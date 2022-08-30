@@ -1,0 +1,11 @@
+PyYAML>=5.4.1
+fastapi>=0.66.0
+uvicorn>=0.13.4
+dependency-injector>=4.39.1
+starlette>=0.14.2
+pydantic>=1.9.1
+sqlalchemy>=1.4.37
+asyncpg>=0.25.0
+alembic==1.8
+sqlalchemy_utils
+Werkzeug~=2.2.2

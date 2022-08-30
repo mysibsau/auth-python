@@ -1,0 +1,1 @@
+db_connection_string: postgresql+asyncpg://auth_user:12345678@localhost/auth_db
