@@ -1,23 +1,19 @@
-from typing import Any
 from contextlib import asynccontextmanager
+from typing import Any
 
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.engine.result import ChunkedIteratorResult
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import sessionmaker
 
+from config import Config
 from models import Base
 
 
 class PsqlService:
+    def __init__(self, config: Config):
 
-    def __init__(self, connection_str: str):
-
-        self.__engine = create_async_engine(connection_str)
-        self.__async_session = sessionmaker(
-            self.__engine,
-            expire_on_commit=False,
-            class_=AsyncSession
-        )
+        self.__engine = create_async_engine(config.db_url)
+        self.__async_session = sessionmaker(self.__engine, expire_on_commit=False, class_=AsyncSession)
 
     @asynccontextmanager
     async def __session_scope(self) -> AsyncSession:

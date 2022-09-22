@@ -1,10 +1,9 @@
-from dependency_injector.wiring import inject, Provide
+from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends
 
 from di_container import Container
 from schemas.user import LoginUserScheme
 from services.user_service import UserService
-
 
 router = APIRouter(tags=["user"])
 
