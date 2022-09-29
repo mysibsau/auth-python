@@ -8,13 +8,13 @@ class Config(BaseSettings):
     db_user: str = Field(..., env="POSTGRES_USER")
     db_password: str = Field(..., env="POSTGRES_PASSWORD")
     db_host: str = Field(..., env="POSTGRES_HOST")
-    _db_url: str = Field("", env="DATABASE_URL")
+    db_url_: str = Field(env="DATABASE_URL", default_factory=str)
 
     odoo_db: str = Field(..., env="ODOO_DB")
     odoo_url: str = Field(..., env="ODOO_URL")
 
     @property
     def db_url(self) -> str:
-        if self._db_url:
-            return self._db_url
+        if self.db_url_:
+            return self.db_url_
         return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}/{self.db}"
