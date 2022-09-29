@@ -16,5 +16,5 @@ class Config(BaseSettings):
     @property
     def db_url(self) -> str:
         if self.db_url_:
-            return self.db_url_
+            return self.db_url_.replace("postgres://", "postgresql+asyncpg://")
         return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}/{self.db}"
